@@ -1,4 +1,4 @@
-package tstun
+package tailnet
 
 import (
 	"github.com/caddyserver/caddy/v2/caddyconfig"

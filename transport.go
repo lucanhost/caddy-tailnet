@@ -1,4 +1,4 @@
-package tstun
+package tailnet
 
 import (
 	"context"
@@ -37,7 +37,7 @@ func (Transport) CaddyModule() caddy.ModuleInfo {
 }
 
 // Provision sets up the transport. It gets a reference to the global
-// tstun App and overrides the underlying http.Transport's DialContext.
+// caddy-tailnet App and overrides the underlying http.Transport's DialContext.
 func (t *Transport) Provision(ctx caddy.Context) error {
 	// Provision the underlying standard HTTPTransport first.
 	if err := t.HTTPTransport.Provision(ctx); err != nil {
@@ -93,7 +93,7 @@ func (t *Transport) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {
 		return d.ArgErr()
 	}
 	if d.NextBlock(0) {
-		return d.Err("tsnet transport does not take block arguments. configure tstun globally.")
+		return d.Err("tsnet transport does not take block arguments. configure caddy-tailnet globally.")
 	}
 	return nil
 }

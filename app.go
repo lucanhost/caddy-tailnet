@@ -1,4 +1,4 @@
-package tstun
+package tailnet
 
 import (
 	"context"

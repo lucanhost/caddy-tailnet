@@ -13,8 +13,8 @@ builds:
     goarch:
       - amd64
       - arm64
-    main: ./cmd/tstun
-    binary: tstun
+    main: ./cmd/caddy-tailnet
+    binary: caddy-tailnet
     flags:
       - -trimpath
     ldflags:

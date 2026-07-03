@@ -1,4 +1,4 @@
-module github.com/lucanhost/tstun
+module github.com/lucanhost/caddy-tailnet
 
 go 1.26.3
 

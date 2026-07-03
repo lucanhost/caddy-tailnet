@@ -1,4 +1,4 @@
-# tstun
+# caddy-tailnet
 
 A Caddy module that routes `reverse_proxy` traffic through a [Tailscale](https://tailscale.com) network using [tsnet](https://pkg.go.dev/tailscale.com/tsnet) (userspace).
 
@@ -7,10 +7,10 @@ No Tailscale daemon required — the node runs embedded inside Caddy.
 ## How it works
 
 ```
-Client → Caddy (tstun) → Tailnet → target-node:port
+Client → Caddy (caddy-tailnet) → Tailnet → target-node:port
 ```
 
-`tstun` registers two Caddy modules:
+`caddy-tailnet` registers two Caddy modules:
 
 | Module | ID | Purpose |
 |---|---|---|
@@ -49,19 +49,19 @@ The upstream address (`my-server:8080`) is a Tailscale MagicDNS hostname or Tail
 Requires Go 1.26.3+.
 
 ```bash
-go build -o tstun ./cmd/tstun
+go build -o caddy-tailnet ./cmd/caddy-tailnet
 ```
 
 Or with Docker:
 
 ```bash
-docker build -t tstun .
+docker build -t caddy-tailnet .
 ```
 
 ## Run
 
 ```bash
-./tstun run --config Caddyfile
+./caddy-tailnet run --config Caddyfile
 ```
 
 ### First run
@@ -87,10 +87,10 @@ After authentication, state is saved to `state_dir`. The `auth_key` can then be 
 
 ```bash
 docker run -d \
-  -v ./Caddyfile:/etc/tstun/Caddyfile \
-  -v tstun_state:/data/tsnet_state \
+  -v ./Caddyfile:/etc/caddy-tailnet/Caddyfile \
+  -v tsnet_state:/data/tsnet_state \
   -p 80:80 -p 443:443 \
-  tstun
+  caddy-tailnet
 ```
 
 See [docker-compose.yml](docker-compose.yml) for a complete example.
